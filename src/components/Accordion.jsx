@@ -1,7 +1,10 @@
 import { faqs } from "../assets/data/questions";
 import AccordionItem from "./AccordionItem";
+import { useState } from "react";
 
 export default function Accordion() {
+  const [currentOpen, setCurrentOpen] = useState(null);
+
   return (
     <div className="accordion">
       {faqs.map((el, index) => (
@@ -9,8 +12,11 @@ export default function Accordion() {
           key={el.title}
           num={index + 1}
           title={el.title}
-          text={el.text}
-        />
+          currentOpen={currentOpen}
+          onOpen={setCurrentOpen}
+        >
+          {el.text}
+        </AccordionItem>
       ))}
     </div>
   );
